@@ -1,15 +1,13 @@
-const express = require("express");
-const errorHandler = require("./middleware/errorHandler");
-const dotenv = require("dotenv").config();
+const express = require("express")
+const errorHandler = require("./middleware/errorHandler")
+const dotenv = require('dotenv').config()
 
-const app = express();
+const app = express()
+const PORT = process.env.PORT || 5000
+app.use(express.json())
 
-const PORT = process.env.PORT;
-
-app.use("/api/contacts", require('./routes/contactRoutes'))
-
+app.use('/api/contacts', require('./routes/contactRoutes'))
 app.use(errorHandler)
-
-app.listen(PORT, () => { // Correct usage of app.listen()
-    console.log(`Server running on PORT ${PORT}`);
-});
+app.listen(PORT, ()=> {
+    console.log(`Server running in ${PORT}`)
+})
